@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block style_css %}
+  img { width : 200px; }
+{% endblock %}
+
+{% block encabezado %}
+<h1> Detalles de la Receta: {{receta.titulo|upper}}</h1>
+{% endblock %}
+
+{% block contenido %}
+	<div id='referencia'>
+     	<img src="{{MEDIA_URL}}{{receta.imagen}}">
+    </div>
+    <div id='ingredientes'>
+    	<h2>Ingredientes</h2>
+    	<p>{{receta.ingredientes}}</p>
+    </div>
+    <div id='preparacion'>
+    	<h2>Preparaci&oacute;n</h2>
+    	<p>{{receta.prepacion}}</p>
+    </div>
+    <div id='comentarios'>
+    	<h2>Comentarios</h2>
+    	{% for item in comentarios %}
+    		<p>{{item.texto}}</p> 
+    	{% empty %}
+    		<p>Sin comentarios registrados</p>
+    	{% endfor %}
+    </div>
+{% endblock %}
+
+{% block pie %}
+ <footer>
+ 	<p> Registrado {{receta.tiempo_registro|date:'SHORT_DATETIME_FORMAT'}} por {{receta.usuario}} </p>
+ </footer>
+ {% endblock %}

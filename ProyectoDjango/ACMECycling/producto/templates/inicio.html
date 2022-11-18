@@ -1,0 +1,16 @@
+
+
+{% extends 'base.html' %}
+
+{% block encabezado %}
+<h1> Recetario </h1>
+{% endblock %}
+
+  {% block contenido %}
+    <p>Actualmente tenemos registradas {{productos|length}} productos: </p>
+	<ol>
+		{% for dato in productos %}
+	  	<li>{{dato.nombre}}</li>
+		{% endfor %}
+	</ol>
+  {% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block encabezado %}
+<h1> Colaboradores </h1>
+{% endblock %}
+
+{% block contenido %}
+	<dl>
+		{% for dato in usuarios %}
+	  	<dt>{{dato.username}} - <em>{{dato.email}}</em>
+	  		<dl>
+			{% for item in dato.receta_set.all %}
+	  			<dd>{{item}}</dd>
+			{% endfor %}
+			</dl>
+		</dt>
+		{% endfor %}
+	</dl>
+{% endblock %}

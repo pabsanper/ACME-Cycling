@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block encabezado %}
+<h1> Nuestras Recetas </h1>
+{% endblock %}
+
+{% block contenido %}
+	<dl>
+		{% for dato in datos %}
+	  	<dt>
+	  		<a href='receta/{{dato.id}}'>{{dato.titulo}}</a><br>
+			<img src= "{{MEDIA_URL}}{{dato.imagen}}" width=100px height=100px>
+			<br><br>
+	    </dt>
+		{% endfor %}
+	</dl>
+{% endblock %}
