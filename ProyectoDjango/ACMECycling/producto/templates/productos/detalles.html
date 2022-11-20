@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ producto.nombre }}
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+   
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>{{ producto.nombre }}</h3>
+          <p>
+            <a href="">
+              {{ producto.categoria }}
+            </a>
+          </p>
+          <p style="font-size:20px;color:#d9534f">{{ producto.precio }}€</p>
+
+          <div style="margin-top:20px;">
+            {{ producto.descripcion|linebreaks }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

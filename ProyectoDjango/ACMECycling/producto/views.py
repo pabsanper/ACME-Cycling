@@ -7,3 +7,7 @@ from django.conf import settings
 def inicio(request):
     productos=Producto.objects.all()
     return render(request,'inicio.html', {'productos':productos})
+
+def detalles_productos(request, id_producto):
+    producto = get_object_or_404(Producto, id=id_producto)
+    return render(request, 'productos/detalles.html', {'producto': producto})
