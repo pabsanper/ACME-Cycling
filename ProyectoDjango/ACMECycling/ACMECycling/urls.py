@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from catalogo import views as ca_views
+from producto import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('catalogo/', ca_views.listar),
-    path('catalogo/', ca_views.buscador, name='busqueda'),
+    path('catalogo/', views.listar),
+    path('catalogo/', views.buscador, name='busqueda'),
 ]
