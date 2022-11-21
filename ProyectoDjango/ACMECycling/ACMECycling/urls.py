@@ -25,8 +25,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.inicio),
+
     path('catalogo/', views.listar),
-    path('catalogo/', views.buscador, name='busqueda'),
+
     path('catalogo/producto/<int:id_producto>',views.detalles_productos),
     path("registro/", include("registro.urls")),
     path('productos/producto/<int:id_producto>',views.detalles_productos),
