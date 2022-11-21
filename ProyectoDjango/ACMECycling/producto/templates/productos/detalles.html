@@ -7,21 +7,25 @@
 
 {% block content %}
   <div class="row">
-   
+    {% if producto.stock == 0 %}
+      <h2>PRODUCTO AGOTADO</h2>
+    {% endif %}
+    <div class="col-md-4">
+      <img class="img-responsive" width="400" height="400"  src="{{ producto.imagen.url }}" />
+    </div>
     <div class="col-md-8">
       <div class="panel panel-default">
         <div class="panel-body">
           <h3>{{ producto.nombre }}</h3>
-          <p>
-            <a href="">
+          
+          <p style="font-size:20px">
+            CATEGORÍA: 
               {{ producto.categoria }}
-            </a>
           </p>
-          <p style="font-size:20px;color:#d9534f">{{ producto.precio }}€</p>
-
-          <div style="margin-top:20px;">
-            {{ producto.descripcion|linebreaks }}
-          </div>
+          <p style="font-size:20px">PRECIO: {{ producto.precio }}€</p>
+          <p style="font-size:20px">
+            DESCRIPCIÓN: {{ producto.descripcion}}
+          </p>
         </div>
       </div>
     </div>

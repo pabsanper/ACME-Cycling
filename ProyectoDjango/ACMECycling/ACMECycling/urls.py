@@ -19,11 +19,15 @@ from producto import views
 #from django.views.generic.base import TemplateView
 #from django.contrib.auth.views import LoginView
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.inicio),
+    path('catalogo/', views.listar),
+    path('catalogo/', views.buscador, name='busqueda'),
+    path('catalogo/producto/<int:id_producto>',views.detalles_productos),
     path("registro/", include("registro.urls")),
     path('productos/producto/<int:id_producto>',views.detalles_productos),
-
-
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
