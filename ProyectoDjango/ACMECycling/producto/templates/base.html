@@ -15,7 +15,15 @@
             ACME Cycling
           </a>
         </div>
-        <p class="navbar-text" style="color: white">Podrás tener la bicicleta de tus sueños</p>
+        <p class="navbar-text">Podrás tener la bicicleta de tus sueños</p>
+        {% block links %}
+          {% if user.is_authenticated %}
+          <a class="navbar-brand" href="http://localhost:8000/registro/logout/">Cierra sesión</a>
+          {% else %}
+            <a class="navbar-brand" href="http://localhost:8000/registro/registro/">Regístrate</a>
+            <a class="navbar-brand" href="http://localhost:8000/registro/login/">Inicia sesión</a>
+          {% endif %}
+        {% endblock %}
       </div>
     </nav>
 
