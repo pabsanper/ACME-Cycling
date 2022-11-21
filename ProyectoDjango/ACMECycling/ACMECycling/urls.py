@@ -25,6 +25,6 @@ urlpatterns = [
     path('',views.inicio),
     path('catalogo/', views.listar),
     path('catalogo/', views.buscador, name='busqueda'),
-    path('productos/producto/<int:id_producto>',views.detalles_productos),
+    path('catalogo/producto/<int:id_producto>',views.detalles_productos),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

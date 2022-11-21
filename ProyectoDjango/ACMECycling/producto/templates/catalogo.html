@@ -5,13 +5,12 @@
 {% block content %}
 
 
-<div class="container">
-    <div class="row"></div>
+<div class="row" style="padding-bottom: 2%; padding-top: 2%">
     <div class="col-md-6">
         <form method="get">
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                    <input type="text" class="form-control" placeholder="Buscar" name="buscar">
+                    <input type="text" class="form-control" placeholder="Buscar" name="buscar" value=" {{ request.GET.buscar }}">
                     <button type="submit" class="boton btn-succes">Buscar</button>
                 </div>
             </div>
@@ -29,7 +28,9 @@
         </div>
         <div class="col-md-8">
             <div class="row">
+                <a href='producto/{{producto.id}}'>
                 <h1>{{ producto.nombre }}</h1>
+                </a>
             </div>
             <div class="row">
                 <h2>{{ producto.precio }}</h2>

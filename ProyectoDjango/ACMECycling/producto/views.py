@@ -15,7 +15,6 @@ def detalles_productos(request, id_producto):
     
 def buscador(request):
     busqueda = request.GET.get("buscar")
-    productos = Producto.objects.all()
 
     if busqueda:
         productos = Producto.objects.filter( Q(nombre__icontains = busqueda) |
@@ -25,4 +24,11 @@ def buscador(request):
     return render(request, 'catalogo.html', {'productos':productos})
 
 def listar(request):
-    return render(request, 'catalogo.html', {'productos': Producto.objects.all()})
+    busqueda = request.GET.get("buscar")
+    if busqueda:
+        productos = Producto.objects.filter( Q(nombre__icontains = busqueda) |
+                                             Q(descripcion__icontains = busqueda) |
+                                             Q(categoria__icontains = busqueda)).distinct()
+    else:
+        productos = Producto.objects.all()
+    return render(request, 'catalogo.html', {'productos':productos})
