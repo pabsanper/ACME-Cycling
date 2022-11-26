@@ -127,3 +127,10 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'acme.cycling.pgpi@gmail.com'
+EMAIL_HOST_PASSWORD = 'ypqgyzvkiffshnwz'
+EMAIL_PORT = 587
