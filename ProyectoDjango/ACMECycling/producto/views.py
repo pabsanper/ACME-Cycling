@@ -1,10 +1,43 @@
+import stripe
 from producto.models import Producto, Categoria
 from django.contrib.auth.models import User
-from django.shortcuts import render, get_object_or_404, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 from django.db.models import Q
+from django.views import View
+from django.http import JsonResponse
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 #muestra los títulos de las recetas que están registradas
+def pago(request):
+    return render(request,'pago.html')
+
+def cargo(request):
+    if request.method == 'POST':
+        nombre = request.POST["nombre"]
+        email = request.POST["email"]
+        print(email)
+        customer = stripe.Customer.create(
+            email=email,
+            name=nombre,
+            source = request.POST['stripeToken']
+        )
+
+        #precio total del carrito
+        #precio = 
+        valor = 12.70
+        charge = stripe.Charge.create(
+            customer=customer,
+            amount=560*100, #stripe trabaja en centavos
+            currency='eur',
+            description = 'Pago realizado'
+        )
+
+        #Una vez se haya realizado la compra el carrito se quedaria vacio
+        
+    return redirect('Inicio')
+    
 def inicio(request):
     productos=Producto.objects.all()
     return render(request,'inicio.html', {'productos':productos})
