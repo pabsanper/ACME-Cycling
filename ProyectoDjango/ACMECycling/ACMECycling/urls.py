@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from producto import views as views_pr
 from carrito import views as views_ca
+from finalizarCompra import views as views_fin
 #from django.views.generic.base import TemplateView
 #from django.contrib.auth.views import LoginView
 
@@ -38,6 +39,7 @@ urlpatterns = [
     path('eliminar/<int:producto_id>/', views_ca.eliminar_producto, name="Del"),
     path('restar/<int:producto_id>/', views_ca.restar_producto, name="Sub"),
     path('limpiar/', views_ca.limpiar_carrito, name="CLS"),
+    path('create', views_fin.order_create, name='order_create'),
 
 #    path('cesta/', views_ca.carrito_detail)
 
