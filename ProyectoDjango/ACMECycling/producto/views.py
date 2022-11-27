@@ -20,9 +20,10 @@ def listar(request):
     if busqueda:
         pr_name = Producto.objects.filter(nombre__icontains = busqueda)
         pr_descripcion = Producto.objects.filter(descripcion__icontains = busqueda)
-        pr_categoria = Producto.objects.filter(categoria__icontains = busqueda)
-        pr_fabricante = Producto.objects.filter(fabricante__icontains = busqueda)
-        p = (pr_name | pr_descripcion | pr_categoria | pr_fabricante)
+        #pr_categoria = Producto.objects.filter(categoria__icontains = busqueda)
+      ##  pr_fabricante = Producto.objects.filter(fabricante__icontains = busqueda)
+        ##p = (pr_name | pr_descripcion | pr_categoria | pr_fabricante)
+        p = (pr_name | pr_descripcion)
     else:
         p = Producto.objects.all()
     return render(request, 'catalogo.html', {'productos':p})
