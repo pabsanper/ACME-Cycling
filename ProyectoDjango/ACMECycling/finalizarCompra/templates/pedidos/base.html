@@ -6,9 +6,6 @@
     <title>{% block title %}ACME Cycling{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <link type="text/css" href='{% static "css/base.css" %}' rel="stylesheet">
-    
-
   </head>
   <body style="padding-bottom: 5%;">
     <nav class="navbar navbar-default" style="background-color:#ff0800">
@@ -17,29 +14,9 @@
           <a class="navbar-brand" href="" style="color: white">
             ACME Cycling
           </a>
-          
         </div>
         <p class="navbar-text">Podrás tener la bicicleta de tus sueños</p>
-
-        <ul class="nav">
-          <li><a href="http://localhost:8000/carrito/" style="color: white">Carrito</a>
-            <ul>
-              {% if request.session.carrito.items %}
-                {% for key, value in request.session.carrito.items %}
-                  <li><a style="color: white">{{value.nombre}} x{{value.cantidad}}</a></li>
-                {% endfor %}
-                <li><a style="color: white">Toal: {{ carrito.get_total_price|floatformat:"2" }}€</a></li>
-              {% else %}
-                <li><a style="color: white"> Sin Productos </a></li>
-              {% endif %}
-            </ul>
-          </li>
-        </ul>
-
-
         {% block links %}
-        <a class="navbar-brand" href="http://localhost:8000/catalogo/">Búsqueda de artículos</a>
-
           {% if user.is_authenticated %}
           <a class="navbar-brand" href="http://localhost:8000/registro/logout/">Cierra sesión</a>
           {% else %}
