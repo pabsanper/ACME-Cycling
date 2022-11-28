@@ -39,7 +39,7 @@ urlpatterns = [
     path('eliminar/<int:producto_id>/', views_ca.eliminar_producto, name="Del"),
     path('restar/<int:producto_id>/', views_ca.restar_producto, name="Sub"),
     path('limpiar/', views_ca.limpiar_carrito, name="CLS"),
-    path('create', views_fin.order_create, name='order_create'),
+    path('create', views_fin.datos_pago, name='Pagar'),
 
 #    path('cesta/', views_ca.carrito_detail)
 
