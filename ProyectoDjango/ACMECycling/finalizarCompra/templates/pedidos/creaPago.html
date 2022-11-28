@@ -51,7 +51,7 @@ Finalización de compra
     </div>
 
   <div class="row">
-    <form action="#" method="POST" id="payment-form">{% csrf_token %}
+    <form action="{% url 'Procesar' %}" method="POST" id="payment-form">{% csrf_token %}
       <div class="form-row">
         <label for="card-element">
           Nombre completo
@@ -82,6 +82,19 @@ Finalización de compra
           <label for="contrareembolso">Contrareembolso</label>
           <input type="radio" name="metodoPago" value="TJ">
           <label for="tarjeta">Tarjeta de crédito o débito</label>
+        </div>
+       
+      </div>
+      <div class="form-row">
+        <label for="card-element">
+          Opciones de entrega
+    
+        </label>
+        <div>
+          <input type="radio" name="metodoEnvio" value="CO" checked>
+          <label for="correos">Correos (+2,00€ llega en 2 días)</label>
+          <input type="radio" name="metodoEnvio" value="SER">
+          <label for="seur">Seur (+0,99€ llega en 5 días)</label>
         </div>
        
       </div>

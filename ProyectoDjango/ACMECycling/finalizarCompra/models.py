@@ -1,17 +1,15 @@
 from django.db import models
 
-from django.core.validators import MinValueValidator, MaxValueValidator
-from producto.models import Producto
 from django.contrib.auth.models import User
-import django.db.models.deletion
+
 
 
 class Venta(models.Model):
-    nombre = models.CharField(max_length=50)
-    email = models.EmailField()
-    cliente = models.ForeignKey(User, on_delete=models.CASCADE)
-    dirreccion = models.CharField(max_length=250)
-    creacion = models.DateTimeField(auto_now_add=True)
+    nombre = models.CharField(max_length=50, null=True)
+    email = models.EmailField(blank=True)
+    cliente = models.ForeignKey(User, on_delete=models.CASCADE, default='')
+    dir = models.CharField(max_length=250, blank=True)
+    creacion = models.DateTimeField(auto_now_add=True, null=True)
 
     pagado = models.BooleanField(default=False)
     class formasPago(models.TextChoices):
@@ -20,12 +18,21 @@ class Venta(models.Model):
 
     metodoPago = models.CharField(
         max_length=2,
-        choices=formasPago.choices,
+        choices=formasPago.choices, default=formasPago.CONTRAREEMBOLSO,
     )
+    class formasEnvio(models.TextChoices):
+        CORREO = 'CO', 
+        SEUR = 'SE',
+
+    metodoEnvio = models.CharField(
+        max_length=2,
+        choices=formasEnvio.choices, default=formasEnvio.CORREO,
+    )
+    precio=models.DecimalField(max_digits=6, decimal_places=2, null=True)
+    
 
     class Meta:
         ordering = ('-creacion',)
 
     def __str__(self):
         return 'Venta {}'.format(self.id)
-

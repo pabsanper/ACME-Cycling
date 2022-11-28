@@ -33,19 +33,25 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 
-<form action="{% url 'Cargo'%}" method="POST" id="payment-form">{% csrf_token %}
+<form action="{% url 'Cargo' venta.id %}" method="POST" id="payment-form">{% csrf_token %}
+  <div class="form-row">
+    <label for="card-element">
+      Cantidad a pagar(€)
+    </label>
+    <input class="form-control" type="text" name="precio" value="{{venta.precio}}" placeholder="Nombre completo" readonly>
+  </div>
   <div class="form-row">
     <label for="card-element">
       Nombre completo
     </label>
-    <input class="form-control" type="text" name="nombre" placeholder="Nombre completo" required>
+    <input class="form-control" type="text" name="nombre" value="{{venta.nombre}}" placeholder="Nombre completo" readonly>
   </div>
   <div class="form-row">
     <label for="card-element">
       Correo electrónico
 
     </label>
-    <input class="form-control" type="email" placeholder="ejemplo@ejemplo.com" name="email" required>
+    <input class="form-control" type="email" value="{{venta.email}}" placeholder="ejemplo@ejemplo.com" name="email" readonly>
   </div>
   <div class="form-row">
     <label for="card-element">
