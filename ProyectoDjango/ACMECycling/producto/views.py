@@ -1,8 +1,7 @@
 
 import stripe
-from producto.models import Producto, Categoria
 
-from producto.models import Producto, Fabricante
+from producto.models import Producto, Categoria, Fabricante
 
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
