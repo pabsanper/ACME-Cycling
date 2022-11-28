@@ -29,6 +29,9 @@ urlpatterns = [
 
     path('catalogo/', views_pr.listar, name="Tienda"),
 
+    path('fabricantes/', views_pr.listarFabricantes),
+    path('fabricantes/<int:id_fabricante>/', views_pr.listarProductosFabricante),
+
     path('catalogo/producto/<int:id_producto>',views_pr.detalles_productos),
     path("registro/", include("registro.urls")),
     path('productos/producto/<int:id_producto>',views_pr.detalles_productos),
