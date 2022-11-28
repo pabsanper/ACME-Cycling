@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'producto',
-    'registro'
+    'registro',
+    'carrito',
+    'finalizarCompra',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'carrito.context_processor.carrito',
             ],
         },
     },
@@ -128,6 +131,13 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-
 STRIPE_PUBLIC_KEY = "pk_test_51M8SduALxiA9csgFgrsIrWJwYxD6h28NYJCtz2lOrfb8uHpOadJoYVUDi9HpmIBmccIdGgON1JzcMdZgfisqP0dz00gg1O0Tg8"
 STRIPE_SECRET_KEY = "sk_test_51M8SduALxiA9csgFUH3ifBCGCxFNmGRglCFgPkjMYhfHMuoBmDH5KyUhupDhlFGOkHHyfhwggq8Y9vh1uknrwXtA00BQuuxF1D"
+
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'acme.cycling.pgpi@gmail.com'
+EMAIL_HOST_PASSWORD = 'ypqgyzvkiffshnwz'
+EMAIL_PORT = 587
+
