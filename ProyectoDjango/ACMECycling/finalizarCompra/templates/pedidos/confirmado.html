@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Gracias
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <h1>Gracias</h1>
+
+  <p>Tu pedido se ha procesado correctamente. Tu número de pedido es <strong>{{ venta.id }}</strong></p>
+  <p>El precio ha sido de: <strong>{{ venta.precio }} €</strong></p>
+</div>  
+{% endblock %}

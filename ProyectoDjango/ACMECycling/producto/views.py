@@ -1,10 +1,15 @@
-from producto.models import Producto, Fabricante
+
+import stripe
+
+from producto.models import Producto, Categoria, Fabricante
+
 from django.contrib.auth.models import User
-from django.shortcuts import render, get_object_or_404, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
 from django.db.models import Q
-
-#muestra los títulos de las recetas que están registradas
+from django.views import View
+from django.http import JsonResponse
+    
 def inicio(request):
     productos=Producto.objects.all()
     return render(request,'inicio.html', {'productos':productos})
@@ -27,6 +32,7 @@ def listar(request):
         p = Producto.objects.all()
     return render(request, 'catalogo.html', {'productos':p})
 
+
 def listar_fabricantes(request):
     fabricantes = Fabricante.objects.all()
     return render(request, 'listadoFabricantes.html', {'fabricantes': fabricantes})
@@ -35,3 +41,4 @@ def listar_productos_fabricante(request, id_fabricante):
     fabricante = get_object_or_404(Fabricante, id=id_fabricante)
     productos = Producto.objects.filter(fabricante__nombre__icontains = fabricante)
     return render(request, 'catalogo.html', {'productos': productos})
+

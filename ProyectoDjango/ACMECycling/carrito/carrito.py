@@ -53,3 +53,6 @@ class Carrito(object):
 
     def get_total_price(self):
         return sum(Decimal(item['precio']) * item['cantidad'] for item in self.carrito.values())
+
+    def get_items(self):
+        return self.carrito.values()
