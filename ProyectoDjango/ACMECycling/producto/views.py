@@ -27,11 +27,11 @@ def listar(request):
         p = Producto.objects.all()
     return render(request, 'catalogo.html', {'productos':p})
 
-def listarFabricantes(request):
+def listar_fabricantes(request):
     fabricantes = Fabricante.objects.all()
     return render(request, 'listadoFabricantes.html', {'fabricantes': fabricantes})
 
-def listarProductosFabricante(request, id_fabricante):
+def listar_productos_fabricante(request, id_fabricante):
     fabricante = get_object_or_404(Fabricante, id=id_fabricante)
     productos = Producto.objects.filter(fabricante__nombre__icontains = fabricante)
     return render(request, 'catalogo.html', {'productos': productos})
