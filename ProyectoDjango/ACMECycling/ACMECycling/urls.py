@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from producto import views
+from producto import views as views_pr
+from carrito import views as views_ca
+from fqs import views as views_fqs
 #from django.views.generic.base import TemplateView
 #from django.contrib.auth.views import LoginView
 
@@ -24,11 +26,25 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.inicio),
+    path('',views_pr.inicio),
 
-    path('catalogo/', views.listar),
+    path('fqs/', views_fqs.inicio),
 
-    path('catalogo/producto/<int:id_producto>',views.detalles_productos),
+    path('catalogo/', views_pr.listar, name="Tienda"),
+
+    path('fabricantes/', views_pr.listar_fabricantes),
+    path('fabricantes/<int:id_fabricante>/', views_pr.listar_productos_fabricante),
+
+    path('catalogo/producto/<int:id_producto>',views_pr.detalles_productos),
     path("registro/", include("registro.urls")),
-    path('productos/producto/<int:id_producto>',views.detalles_productos),
+    path('productos/producto/<int:id_producto>',views_pr.detalles_productos),
+
+    path('carrito/', views_ca.carrito, name="Carrito"),
+    path('agregar/<int:producto_id>/', views_ca.agregar_producto, name="Add"),
+    path('eliminar/<int:producto_id>/', views_ca.eliminar_producto, name="Del"),
+    path('restar/<int:producto_id>/', views_ca.restar_producto, name="Sub"),
+    path('limpiar/', views_ca.limpiar_carrito, name="CLS"),
+
+#    path('cesta/', views_ca.carrito_detail)
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
