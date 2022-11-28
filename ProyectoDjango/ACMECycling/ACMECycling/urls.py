@@ -32,6 +32,9 @@ urlpatterns = [
 
     path('catalogo/', views_pr.listar, name="Tienda"),
 
+    path('fabricantes/', views_pr.listar_fabricantes),
+    path('fabricantes/<int:id_fabricante>/', views_pr.listar_productos_fabricante),
+
     path('catalogo/producto/<int:id_producto>',views_pr.detalles_productos),
     path("registro/", include("registro.urls")),
 
