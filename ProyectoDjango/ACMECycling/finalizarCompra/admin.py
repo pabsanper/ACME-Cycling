@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from finalizarCompra.models import Venta
+
+admin.site.register(Venta)

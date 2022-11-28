@@ -1,6 +1,8 @@
 
 import stripe
+
 from producto.models import Producto, Categoria, Fabricante
+
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
@@ -30,6 +32,7 @@ def listar(request):
         p = Producto.objects.all()
     return render(request, 'catalogo.html', {'productos':p})
 
+
 def listar_fabricantes(request):
     fabricantes = Fabricante.objects.all()
     return render(request, 'listadoFabricantes.html', {'fabricantes': fabricantes})
@@ -38,3 +41,4 @@ def listar_productos_fabricante(request, id_fabricante):
     fabricante = get_object_or_404(Fabricante, id=id_fabricante)
     productos = Producto.objects.filter(fabricante__nombre__icontains = fabricante)
     return render(request, 'catalogo.html', {'productos': productos})
+

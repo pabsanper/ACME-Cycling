@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path,include
 from producto import views as views_pr
 from carrito import views as views_ca
+
 from finalizarCompra import views as views_fin
+from fqs import views as views_fqs
+
 #from django.views.generic.base import TemplateView
 #from django.contrib.auth.views import LoginView
 
@@ -29,6 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views_pr.inicio, name='Inicio'),
 
+
+    path('fqs/', views_fqs.inicio),
 
     path('catalogo/', views_pr.listar, name="Tienda"),
 

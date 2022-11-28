@@ -94,6 +94,8 @@ def cargo(request, venta_id):
             currency='eur',
             description = 'Pago realizado'
         )
+        venta.pagado=True
+        venta.save()
         enviar_correo(email, str(venta.id), venta)
         return redirect('Confirmado', str(venta.id))
 

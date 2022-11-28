@@ -29,6 +29,17 @@ class Venta(models.Model):
         choices=formasEnvio.choices, default=formasEnvio.CORREO,
     )
     precio=models.DecimalField(max_digits=6, decimal_places=2, null=True)
+
+    class formasEstado(models.TextChoices):
+        TRANSITO = 'Transito', 
+        PENDIENTE = 'Pendiente'
+        ENVIADO = 'Enviado',
+        RECIBIDO ='Recibido'
+
+    estado = models.CharField(
+        max_length=100,
+        choices=formasEstado.choices, default=formasEstado.PENDIENTE,
+    )
     
 
     class Meta:
