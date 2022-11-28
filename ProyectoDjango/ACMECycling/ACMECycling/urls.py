@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path,include
 from producto import views as views_pr
 from carrito import views as views_ca
+
 from finalizarCompra import views as views_fin
+from fqs import views as views_fqs
+
 #from django.views.generic.base import TemplateView
 #from django.contrib.auth.views import LoginView
 
@@ -30,7 +33,12 @@ urlpatterns = [
     path('',views_pr.inicio, name='Inicio'),
 
 
+    path('fqs/', views_fqs.inicio),
+
     path('catalogo/', views_pr.listar, name="Tienda"),
+
+    path('fabricantes/', views_pr.listar_fabricantes),
+    path('fabricantes/<int:id_fabricante>/', views_pr.listar_productos_fabricante),
 
     path('catalogo/producto/<int:id_producto>',views_pr.detalles_productos),
     path("registro/", include("registro.urls")),

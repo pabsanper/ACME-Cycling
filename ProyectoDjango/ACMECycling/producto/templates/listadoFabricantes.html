@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="row">
+        <p>Aqui podrás encontrar un listado con todos los fabricantes que trabajan con nosotros.</p>
+    </div>
+
+{% for fabricante in fabricantes%}
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row ">
+                <ul>
+                    <li>
+                        <a href='{{fabricante.id}}'>
+                            {{ fabricante.nombre }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+
+{% endblock %}
