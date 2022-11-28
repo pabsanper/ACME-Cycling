@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from producto import views
 from producto import views as views_pr
 from carrito import views as views_ca
 from finalizarCompra import views as views_fin
@@ -24,14 +25,20 @@ from finalizarCompra import views as views_fin
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views_pr.inicio),
+    path('',views_pr.inicio, name='Inicio'),
+
 
     path('catalogo/', views_pr.listar, name="Tienda"),
 
     path('catalogo/producto/<int:id_producto>',views_pr.detalles_productos),
     path("registro/", include("registro.urls")),
+    path('productos/producto/<int:id_producto>',views.detalles_productos),
+
+    path('pagos/',views.pago, name='Pago'),
+    path('cargo/',views.cargo, name='Cargo'),
     path('productos/producto/<int:id_producto>',views_pr.detalles_productos),
 
     path('carrito/', views_ca.carrito, name="Carrito"),
