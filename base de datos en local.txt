@@ -1,0 +1,8 @@
+-Si es la primera vez que creas la base de datos	
+	cd ACME-Cycling/ProyectoDjango/ACMECycling
+	psql -c "create user acmecycling with password 'acmecycling'"
+	psql -c "create database acmecycling owner acmecycling"
+
+-Cada vez que clones el repositorio/rama para ejecutarlo en local
+	El archivo local_settings_document.py copiarlo, y a la copia 
+	se le cambia el nombre a local_settings.py
