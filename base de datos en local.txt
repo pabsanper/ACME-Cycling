@@ -5,7 +5,3 @@
 	psql -c "create user acmecycling with password 'acmecycling'"
 	psql -c "create database acmecycling owner acmecycling"
 
--Cada vez que clones el repositorio/rama para ejecutarlo en local
-	El archivo local_settings_document.py copiarlo, y a la copia 
-	se le cambia el nombre a local_settings.py
-	exit
