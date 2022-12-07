@@ -1,6 +1,9 @@
-{% extends 'index.html' %}
+{% extends "index.html" %}
+
+{% load static %}
+
 {% block content %}
-    <h1>Crea una nueva cuenta</h1>
+    <h1 class="titulo">Crea una nueva cuenta</h1>
     <form method="POST">
          {% csrf_token %}
         {{form.as_p}}
