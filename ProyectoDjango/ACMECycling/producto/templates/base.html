@@ -1,59 +1,228 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}ACME Cycling{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <link type="text/css" href='{% static "css/base.css" %}' rel="stylesheet">
-    
 
-  </head>
-  <body style="padding-bottom: 5%;">
-    <nav class="navbar navbar-default" style="background-color:#ff0800">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="" style="color: white">
-            ACME Cycling
-          </a>
-          
-        </div>
-        <p class="navbar-text">Podrás tener la bicicleta de tus sueños</p>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}ACME Cycling{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/7c7eb7b567.js" crossorigin="anonymous"></script>
+  <link type="text/css" href='{% static "css/base.css" %}' rel="stylesheet">
 
-        <ul class="nav">
-          <li><a href="http://localhost:8000/carrito/" style="color: white">Carrito</a>
-            <ul>
-              {% if request.session.carrito.items %}
-                {% for key, value in request.session.carrito.items %}
-                  <li><a style="color: white">{{value.nombre}} x{{value.cantidad}}</a></li>
-                {% endfor %}
-                <li><a style="color: white">Toal: {{ carrito.get_total_price|floatformat:"2" }}€</a></li>
-              {% else %}
-                <li><a style="color: white"> Sin Productos </a></li>
-              {% endif %}
-            </ul>
-          </li>
-        </ul>
+  <style>
+    .slide {
+      position: relative;
+      box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
+      margin-top: 26px;
+    }
+
+    .slide-inner {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: calc(300px + 3em);
+    }
+
+    .slide-open:checked+.slide-item {
+      position: static;
+      opacity: 100;
+    }
+
+    .slide-item {
+      position: absolute;
+      opacity: 0;
+      -webkit-transition: opacity 0.6s ease-out;
+      transition: opacity 0.6s ease-out;
+    }
+
+    .slide-item img {
+      display: block;
+      height: auto;
+      max-width: 100%;
+    }
+
+    .slide-control {
+      background: rgba(0, 0, 0, 0.28);
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      display: none;
+      font-size: 40px;
+      height: 40px;
+      line-height: 35px;
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translate(0, -50%);
+      cursor: pointer;
+      -ms-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+      text-align: center;
+      width: 40px;
+      z-index: 10;
+    }
+
+    .slide-control.prev {
+      left: 2%;
+    }
+
+    .slide-control.next {
+      right: 2%;
+    }
+
+    .slide-control:hover {
+      background: rgba(0, 0, 0, 0.8);
+      color: #aaaaaa;
+    }
+
+    #slide-1:checked~.control-1,
+    #slide-2:checked~.control-2,
+    #slide-3:checked~.control-3 {
+      display: block;
+    }
+
+    .slide-indicador {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      bottom: 2%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .slide-indicador li {
+      display: inline-block;
+      margin: 0 5px;
+    }
+
+    .slide-circulo {
+      color: #828282;
+      cursor: pointer;
+      display: block;
+      font-size: 35px;
+    }
+
+    .slide-circulo:hover {
+      color: #aaaaaa;
+    }
+
+    #slide-1:checked~.control-1~.slide-indicador li:nth-child(1) .slide-circulo,
+    #slide-2:checked~.control-2~.slide-indicador li:nth-child(2) .slide-circulo,
+    #slide-3:checked~.control-3~.slide-indicador li:nth-child(3) .slide-circulo {
+      color: #428bca;
+    }
+
+    #titulo {
+      width: 100%;
+      position: absolute;
+      padding: 0px;
+      margin: 0px auto;
+      text-align: center;
+      font-size: 27px;
+      color: rgba(255, 255, 255, 1);
+      font-family: 'Open Sans', sans-serif;
+      z-index: 9999;
+      text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33),
+        -1px 0px 2px rgba(255, 255, 255, 0);
+    }
+  </style>
+
+</head>
 
 
-        {% block links %}
-        <a class="navbar-brand" href="http://localhost:8000/catalogo/">Búsqueda de artículos</a>
+<body>
 
-          {% if user.is_authenticated %}
-          <a class="navbar-brand" href="http://localhost:8000/registro/logout/">Cierra sesión</a>
-          {% else %}
-            <a class="navbar-brand" href="http://localhost:8000/registro/registro/">Regístrate</a>
-            <a class="navbar-brand" href="http://localhost:8000/registro/login/">Inicia sesión</a>
-          {% endif %}
-        {% endblock %}
-      </div>
-      
-    </nav>
+  <nav class="navbar sticky-top navbar-collapse" style="background-color:#6d0804">
 
-    <div class="container" >
-      {% block content %}
-      {% endblock %}
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+        <img class="logo" src="/media/Acme_cycling.png">
+      </a>
     </div>
-  </body>
+
+
+
+
+
+
+    {% block links %}
+
+    <a class="navbar-brand" href="/catalogo/">Productos</a>
+    <a class="navbar-brand" href="/fabricantes/">Fabricantes</a>
+
+    <ul class="nav">
+      <li class="nav-item"><a href="/carrito/" style="color: white"><i
+            class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+        <ul class="desplegable">
+          {% if request.session.carrito.items %}
+          {% for key, value in request.session.carrito.items %}
+          <li><a style="color: white">{{value.nombre}} x{{value.cantidad}}</a></li>
+          {% endfor %}
+          <li><a style="color: white">Toal: {{ carrito.get_total_price|floatformat:"2" }}€</a></li>
+          {% else %}
+          <li><a style="color: white"> Sin Productos </a></li>
+          {% endif %}
+        </ul>
+      </li>
+    </ul>
+
+    {% if user.is_authenticated %}
+    <a class="navbar-brand" href="http://localhost:8000/registro/logout/">Cierra sesión</a>
+    {% else %}
+    <a class="navbar-brand" href="/registro/">Regístrate</a>
+    <a class="navbar-brand" href="/registro/login/">Inicia sesión</a>
+    {% endif %}
+
+
+    {% endblock %}
+  </nav>
+
+
+  <div class="container">
+    {% block content %}
+    <h3>AcmeCycling el mundo soñado por y para los amantes del ciclismo</h3>
+    <div class="slide">
+      {% if productos %}
+
+      <div class="slide-inner">
+
+        {% for pcs in productos %}
+
+        {% if pcs.stock > 0 %}
+
+        <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden="" checked="checked">
+        <div class="slide-item">
+          <img src="{{ pcs.imagen.url }}">
+        </div>
+        <label for="slide-3" class="slide-control prev control-1">‹</label>
+        <label for="slide-2" class="slide-control next control-1">›</label>
+        {% endif %}
+        {% endfor %}
+
+      </div>
+
+      {% endif %}
+
+    </div>
+    {% endblock %}
+  </div>
+</body>
+
+<footer style="text-align: center;
+  padding: 3px;
+  background-color: DarkSalmon;
+  color: white;
+  bottom: 0;
+  width: 100%;
+  margin-top: 50px;">
+  <p>AcmeCycling una empresa para los amantes del ciclismo</p>
+  <p>Puede ponerse en contacto con nosotros a través del siguiente email: acmecycling.pgpi@gmail.com</p>
+</footer>
+
 </html>
