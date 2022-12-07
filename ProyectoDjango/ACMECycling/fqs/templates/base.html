@@ -25,10 +25,13 @@
           {% endif %}
         {% endblock %}
       </div>
+      <li class=" nav-item active">
+        <a class="navbar-brand" href="http://localhost:8000/carrito/">Carrito
+        <span class="badge badge-success">{{request.session.carrito.keys|length}}</span></a>
+      </li>
       <li class="nav-item active ">
         <a class="nav-link" href="http://localhost:8000/seguimiento/">Seguimiento<span class="sr-only"></span></a>
       </li>
-      
     </nav>
 
     <div class="container" >

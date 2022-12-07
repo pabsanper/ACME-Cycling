@@ -23,45 +23,54 @@
     <nav class="navbar sticky-top navbar-collapse" style="background-color:#6d0804">
 
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">
-                <img class="logo" src="/media/Acme_cycling.png">
-            </a>
+          <a class="navbar-brand" href="/">
+            <img class="logo" src="/media/Acme_cycling.png">
+          </a>
         </div>
-
-
-
-
-
-
+    
+    
+    
+    
+    
+    
         {% block links %}
-
+    
         <a class="navbar-brand" href="/catalogo/">Productos</a>
         <a class="navbar-brand" href="/fabricantes/">Fabricantes</a>
-
-        <ul class="nav">
-            <li class="nav-item"><a href="/carrito/" style="color: white"><i
-                        class="fa-sharp fa-solid fa-cart-shopping"></i></a>
-                <ul class="desplegable">
-                    {% if request.session.carrito.items %}
-                    {% for key, value in request.session.carrito.items %}
-                    <li><a style="color: white">{{value.nombre}} x{{value.cantidad}}</a></li>
-                    {% endfor %}
-                    <li><a style="color: white">Toal: {{ carrito.get_total_price|floatformat:"2" }}€</a></li>
-                    {% else %}
-                    <li><a style="color: white"> Sin Productos </a></li>
-                    {% endif %}
-                </ul>
-            </li>
-        </ul>
-
+    
+        
+    
         {% if user.is_authenticated %}
-        <a class="navbar-brand" href="http://localhost:8000/registro/logout/">Cierra sesión</a>
+        <a class="navbar-brand" href="/seguimiento/">Seguimiento</a>
+    
+        <ul class="nav">
+          <li class="nav-item"><a href="/carrito/" style="color: white"><i
+                class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+            <ul class="desplegable">
+              {% if request.session.carrito.items %}
+              {% for key, value in request.session.carrito.items %}
+              <li><a style="color: white">{{value.nombre}} x{{value.cantidad}}</a></li>
+              {% endfor %}
+              <li><a style="color: white">Toal: {{ carrito.get_total_price|floatformat:"2" }}€</a></li>
+              {% else %}
+              <li><a style="color: white"> Sin Productos </a></li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+    
+        
+    
+        <a class="navbar-brand" href="/registro/logout/">Cierra sesión</a>
+    
+      
         {% else %}
         <a class="navbar-brand" href="/registro/">Regístrate</a>
         <a class="navbar-brand" href="/registro/login/">Inicia sesión</a>
         {% endif %}
-
-
+    
+        
+    
         {% endblock %}
     </nav>
 

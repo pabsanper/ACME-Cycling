@@ -17,7 +17,7 @@ from django.template.loader import get_template
 
 #muestra los títulos de las recetas que están registradas
 def enviar_correo(mail, id, venta):
-    mensaje = 'Su pedido ha sido enviado, tiene el siguiente numero de seguimiento: '+id+ ' y ha costado' + str(venta.precio)+ ' €'
+    mensaje = 'Su pedido ha sido enviado, tiene el siguiente numero de seguimiento: '+id+ ' y ha costado ' + str(venta.precio)+ ' €'
     correo = mail
     context = {'mensaje': mensaje, 'mail': correo}
     plantilla = get_template('plantilla_mail.html')
@@ -104,4 +104,27 @@ def cargo(request, venta_id):
 def pedido_confirmado(request, venta_id): 
     venta = Venta.objects.get(id=venta_id)  
     return render(request,'pedidos/confirmado.html', {'venta': venta}) 
+
+def seguimiento(request):
+    id = request.GET.get('searchbarPedido')
+    if id:
+        venta = Venta.getVentaPorId(id).get()
+        #relacion = list()
+        cantidadVenta = Venta.getCantidadVenta(venta.id)
+        # print(venta.estado)
+        # for i in range(len(cantidadVenta)):
+        #     relacion.append(cantidadVenta[i])
+
+        return render(request, 'pedidos/seguimientos.html', {'venta': venta})
+    else:
+        return render(request, 'pedidos/seguimientos.html')
+
+# def seguimiento(request):
+#     queryset=request.GET.get("buscar")
+#     productos = Seguimiento.objects.all()
+#     if queryset:
+#         productos = Seguimiento.objects.filter(
+#             Q(seguimiento_id__icontains = queryset)
+#         )
+#     return render(request, 'pedidos/seguimiento.html', {'seguimiento' : productos})
     

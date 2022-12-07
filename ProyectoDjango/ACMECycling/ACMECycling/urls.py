@@ -57,4 +57,6 @@ urlpatterns = [
 
 #    path('cesta/', views_ca.carrito_detail)
 
+    path('seguimiento/', views_fin.seguimiento, name='seguimiento'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

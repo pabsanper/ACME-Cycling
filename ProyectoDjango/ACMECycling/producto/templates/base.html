@@ -156,6 +156,11 @@
     <a class="navbar-brand" href="/catalogo/">Productos</a>
     <a class="navbar-brand" href="/fabricantes/">Fabricantes</a>
 
+    
+
+    {% if user.is_authenticated %}
+    <a class="navbar-brand" href="/seguimiento/">Seguimiento</a>
+
     <ul class="nav">
       <li class="nav-item"><a href="/carrito/" style="color: white"><i
             class="fa-sharp fa-solid fa-cart-shopping"></i></a>
@@ -172,13 +177,17 @@
       </li>
     </ul>
 
-    {% if user.is_authenticated %}
-    <a class="navbar-brand" href="http://localhost:8000/registro/logout/">Cierra sesión</a>
+    
+
+    <a class="navbar-brand" href="/registro/logout/">Cierra sesión</a>
+
+  
     {% else %}
     <a class="navbar-brand" href="/registro/">Regístrate</a>
     <a class="navbar-brand" href="/registro/login/">Inicia sesión</a>
     {% endif %}
 
+    
 
     {% endblock %}
   </nav>
