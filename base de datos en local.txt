@@ -1,0 +1,7 @@
+-Si es la primera vez que creas la base de datos	
+	Una vez estas en el entorno virtual instala los requisitos
+	cd ACME-Cycling/ProyectoDjango/ACMECycling
+	sudo su - postgres
+	psql -c "create user acmecycling with password 'acmecycling'"
+	psql -c "create database acmecycling owner acmecycling"
+

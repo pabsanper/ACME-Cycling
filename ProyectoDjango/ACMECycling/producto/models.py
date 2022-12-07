@@ -23,9 +23,9 @@ class Fabricante(models.Model):
         return self.nombre
     
 class Producto(models.Model):
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, default='1')
-    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, default='2')
-    fabricante = models.ForeignKey(Fabricante, on_delete=models.CASCADE, default='3')
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+    fabricante = models.ForeignKey(Fabricante, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=200)
     imagen = models.ImageField(upload_to= 'productos/', verbose_name='Imagen', default='productos/noimage.jpg')
     descripcion = models.TextField(blank=True)
