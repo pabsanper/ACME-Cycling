@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<br>
+<br>
+<div class="container-fluid">
+  <form method="get">
+    <div id="custom-search-input" allign = "center">
+      <div class="input-group col-md-12">
+        <input type="text" class="from-control" placeholder="Buscar ID del pedido" name="buscar">
+        <span class="input-group-list">
+          <button type="submit" class="boton btn-success">Buscar</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <table border="12" style="margin: 0 auto;">
+    <tr>
+        <td><strong>Nombre</td></strong>
+        <td allign="center"><strong>Estado</td></strong>
+    </tr>
+    {% for s in seguimiento %}
+        <tr>
+            <td>{{s.producto_id.nombre}}</td>
+            <td>{{s.estado}}</td>
+        </tr>
+     {% endfor %}
+    </table>
+</div>
+<br>
+<br>
+{% endblock %}

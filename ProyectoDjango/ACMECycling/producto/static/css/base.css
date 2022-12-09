@@ -1,7 +1,4 @@
-*{
-    margin:0px;
-    padding:0px;
-  }
+
 
   #header {
     margin: auto;
@@ -9,15 +6,18 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  ul, ol{
+  .row {
+    padding-top: 20px;
+  }
+
+  ul.desplegable {
     list-style:none;
   }
 
   .nav li a {
-    background-color:#ff0800;
     color:#fff;
     text-decoration:none;
-    padding: 10px 15px;
+    padding: 10px 0px;
     display: block;
   }
 
@@ -37,4 +37,46 @@
 
   .nav li:hover > ul{
     display: block;
+  }
+
+  .desplegable {
+    background-color: #8d1511;
+  }
+
+  img.logo {
+    height: 60px;
+    width: 90px;
+    margin-left: 20px;
+  }
+
+  #detail {
+    padding-top: 40px;
+  }
+
+  #boton {
+    padding-top: 20px;
+  }
+
+  .navbar-brand {
+    color: white;
+  }
+ 
+
+  h1.titulo {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .log-form {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .element {
+    margin-bottom: 20px;
+  }
+
+  .fabricante {
+    margin-bottom: 20px;
+    text-align: center;
   }

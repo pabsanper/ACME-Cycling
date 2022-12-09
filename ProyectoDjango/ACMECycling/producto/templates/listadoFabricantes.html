@@ -4,27 +4,26 @@
 
 {% block content %}
 
-<div class="row">
     <div class="row">
-        <p>Aqui podrás encontrar un listado con todos los fabricantes que trabajan con nosotros.</p>
+        <p style="text-align:center;">Aqui podrás encontrar un listado con todos los fabricantes que trabajan con nosotros:</p>
     </div>
 
-{% for fabricante in fabricantes%}
+
 
     <div class="row">
-        <div class="col-md-8">
-            <div class="row ">
+            <div class="row">
                 <ul>
-                    <li>
-                        <a href='{{fabricante.id}}'>
+                    {% for fabricante in fabricantes%}
+                    <li class="fabricante">
+                        <a href='{{fabricante.id}}' style="text-decoration:none; color: black; font-size:25px;">
                             {{ fabricante.nombre }}
                         </a>
                     </li>
+                    {% endfor %}
                 </ul>
             </div>
-        </div>
     </div>
 
-{% endfor %}
+
 
 {% endblock %}

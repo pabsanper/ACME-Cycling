@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django.conf import settings
+from .models import *
 #from producto.models import Producto
 
 class Carrito(object):

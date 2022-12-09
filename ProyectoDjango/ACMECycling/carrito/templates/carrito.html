@@ -23,8 +23,9 @@
         <td>{{value.nombre}}</td>
         <td>{{value.precio|floatformat:"2"}} €</td>
         <td>{{value.cantidad}}
-          <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
           <a href="{% url 'Sub' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
+          <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+          
         </td>
       </tr>
       {% endfor %}

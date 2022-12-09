@@ -5,106 +5,108 @@ Finalización de compra
 {% endblock %}
 
 {% block content %}
-<h1>Finalización de compra</h1>
-
-<div class="row">
+  <h1>Finalización de compra</h1>
 
   <div class="row">
-    <div class="alert alert-primary" role="alert">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="row" colspan="3" class="text-center">CARRITO</th>
-          </tr>
-          <tr>
-            <th scope="col">NOMBRE</th>
-            <th scope="col">PRECIO</th>
-            <th scope="col">CANTIDAD</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% if request.session.carrito.items %}
-          {% for key, value in request.session.carrito.items %}
-          <tr>
-            <td>{{value.nombre}}</td>
-            <td>{{value.precio|floatformat:"2"}} €</td>
-            <td>{{value.cantidad}}
-              <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
-              <a href="{% url 'Sub' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
-            </td>
-          </tr>
-          {% endfor %}
-          {% else %}
-          <tr>
-            <td colspan="3">
-              <div class="alert alert-danger text-center"> Sin Productos </div>
-            </td>
-          </tr>
-          {% endif %}
-          <tr>
-            <th scope="row">Total:</th>
-            <td colspan="2">{{ carrito.get_total_price|floatformat:"2" }} €</td>
-          </tr>
-        </tbody>
-      </table>
-      <hr>
+    <script>
+      alert("Sobre la política de envío gratuito: \n-AcmeCycling no dispone de costes de envíos gratuitos debidos a que no disponemos de servicio de transporte y dependemos de servicios de terceros.");
+  </script>
+    <div class="row">
+      <div class="alert alert-primary" role="alert">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="row" colspan="3" class="text-center">CARRITO</th>
+            </tr>
+            <tr>
+              <th scope="col">NOMBRE</th>
+              <th scope="col">PRECIO</th>
+              <th scope="col">CANTIDAD</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if request.session.carrito.items %}
+            {% for key, value in request.session.carrito.items %}
+            <tr>
+              <td>{{value.nombre}}</td>
+              <td>{{value.precio|floatformat:"2"}} €</td>
+              <td>{{value.cantidad}}
+                <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+                <a href="{% url 'Sub' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
+              </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+              <td colspan="3">
+                <div class="alert alert-danger text-center"> Sin Productos </div>
+              </td>
+            </tr>
+            {% endif %}
+            <tr>
+              <th scope="row">Total:</th>
+              <td colspan="2">{{ carrito.get_total_price|floatformat:"2" }} €</td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+      </div>
+
+    <div class="row">
+      <form action="{% url 'Procesar' %}" method="POST" id="payment-form">{% csrf_token %}
+        <div class="form-row">
+          <label for="card-element">
+            Nombre completo
+          </label>
+          <input class="form-control" type="text" name="nombre" placeholder="Nombre completo" required>
+        </div>
+        <div class="form-row">
+          <label for="card-element">
+            Correo electrónico
+      
+          </label>
+          <input class="form-control" type="email" placeholder="ejemplo@ejemplo.com" name="email" required>
+        </div>
+        <div class="form-row">
+          <label for="card-element">
+            Dirección
+      
+          </label>
+          <input class="form-control" type="text" placeholder="C/ Ejemplo, nº1" name="direccion" required>
+        </div>
+        <div class="form-row">
+          <label for="card-element">
+            Método de pago
+      
+          </label>
+          <div>
+            <input type="radio" name="metodoPago" value="CR" checked>
+            <label for="contrareembolso">Contrareembolso</label>
+            <input type="radio" name="metodoPago" value="TJ">
+            <label for="tarjeta">Tarjeta de crédito o débito</label>
+          </div>
+        
+        </div>
+        <div class="form-row">
+          <label for="card-element">
+            Opciones de entrega
+      
+          </label>
+          <div>
+            <input type="radio" name="metodoEnvio" value="CO" checked>
+            <label for="correos">Correos (+2,00€ llega en 2 días)</label>
+            <input type="radio" name="metodoEnvio" value="SER">
+            <label for="seur">Seur (+0,99€ llega en 5 días)</label>
+          </div>
+        
+        </div>
+
+      
+        <button type="submit" class="btn btn-success">Confirmar pedido</button>
+      </form>
     </div>
 
-  <div class="row">
-    <form action="{% url 'Procesar' %}" method="POST" id="payment-form">{% csrf_token %}
-      <div class="form-row">
-        <label for="card-element">
-          Nombre completo
-        </label>
-        <input class="form-control" type="text" name="nombre" placeholder="Nombre completo" required>
-      </div>
-      <div class="form-row">
-        <label for="card-element">
-          Correo electrónico
-    
-        </label>
-        <input class="form-control" type="email" placeholder="ejemplo@ejemplo.com" name="email" required>
-      </div>
-      <div class="form-row">
-        <label for="card-element">
-          Dirección
-    
-        </label>
-        <input class="form-control" type="text" placeholder="C/ Ejemplo, nº1" name="direccion" required>
-      </div>
-      <div class="form-row">
-        <label for="card-element">
-          Método de pago
-    
-        </label>
-        <div>
-          <input type="radio" name="metodoPago" value="CR" checked>
-          <label for="contrareembolso">Contrareembolso</label>
-          <input type="radio" name="metodoPago" value="TJ">
-          <label for="tarjeta">Tarjeta de crédito o débito</label>
-        </div>
-       
-      </div>
-      <div class="form-row">
-        <label for="card-element">
-          Opciones de entrega
-    
-        </label>
-        <div>
-          <input type="radio" name="metodoEnvio" value="CO" checked>
-          <label for="correos">Correos (+2,00€ llega en 2 días)</label>
-          <input type="radio" name="metodoEnvio" value="SER">
-          <label for="seur">Seur (+0,99€ llega en 5 días)</label>
-        </div>
-       
-      </div>
-
-    
-      <button type="submit" class="btn btn-success">Confirmar pedido</button>
-    </form>
   </div>
-
-</div>
 
 
 {% endblock %}

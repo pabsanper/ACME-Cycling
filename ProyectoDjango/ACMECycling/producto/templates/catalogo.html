@@ -4,38 +4,46 @@
 
 {% block content %}
 
-
 <div class="row" style="padding-bottom: 2%; padding-top: 2%">
-    <div class="col-md-6">
-        <form method="get">
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" class="form-control" placeholder="Buscar" name="buscar" value="{{ request.GET.buscar }}">
-                    <button type="submit" class="boton btn-succes">Buscar</button>
-                </div>
-            </div>
-        </form>
+    <div class="col"></div>
+    <div class="col-md-4">
+      <form method="get" action="{% url 'Tienda' %}">
+        <div id="custom-search-input">
+          <div class="input-group col-md-12">
+            <input type="text" class="form-control" placeholder="Buscar" name="buscar"
+              value="{{ request.GET.buscar }}">
+            <button type="submit" class="btn btn-outline-dark">Buscar</button>
+          </div>
+        </div>
+      </form>
     </div>
-</div>
+    <div class="col"></div>
+  </div>
+
 
 <div class="row">
 {% if productos %}
 {% for producto in productos%}
 
     <div class="row">
-        <div class="col-md-8">
-            <img class="img-responsive" width="400" height="400"  src="{{ producto.imagen.url }}" />
+        <div class="col"></div>
+        <div class="col">
+            <img class="img-responsive"  width="400" height="400"  src="{{ producto.imagen.url }}"  style="max-width:280px; max-height: 280px;"/>
         </div>
-        <div class="col-md-8">
-            <div class="row">
-                <a href='producto/{{producto.id}}'>
+        <div class="col">
+            <div class="row" id="detail">
+                <a href="{% url 'Detalles' producto.id %}" style="color:black; text-decoration:none;">
                 <h1>{{ producto.nombre }}</h1>
                 </a>
             </div>
             <div class="row">
-                <h2>{{ producto.precio }}</h2>
+                <h2>{{ producto.precio }}€</h2>
+            </div>
+            <div class="row" id="boton">
+                <a href="{% url 'Add' producto.id %}" class="btn btn-outline-dark">Agregar al carrito</a>
             </div>
         </div>
+        <div class="col"></div>
     </div>
 
 {% endfor %}
