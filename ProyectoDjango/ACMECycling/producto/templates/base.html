@@ -153,16 +153,16 @@
 
     {% block links %}
 
-    <a class="navbar-brand" href="/catalogo/">Productos</a>
-    <a class="navbar-brand" href="/fabricantes/">Fabricantes</a>
+    <a class="navbar-brand" href="{% url 'Tienda' %}">Productos</a>
+    <a class="navbar-brand" href="{% url 'Fabricantes' %}">Fabricantes</a>
 
     
 
     {% if user.is_authenticated %}
-    <a class="navbar-brand" href="/seguimiento/">Seguimiento</a>
+    <a class="navbar-brand" href="{% url 'seguimiento' %}">Seguimiento</a>
 
     <ul class="nav">
-      <li class="nav-item"><a href="/carrito/" style="color: white"><i
+      <li class="nav-item"><a href="{% url 'Carrito' %}" style="color: white"><i
             class="fa-sharp fa-solid fa-cart-shopping"></i></a>
         <ul class="desplegable">
           {% if request.session.carrito.items %}
@@ -179,12 +179,11 @@
 
     
 
-    <a class="navbar-brand" href="/registro/logout/">Cierra sesión</a>
-
+    <a class="navbar-brand" href="{% url 'logout' %}">Cierra sesión</a>
   
     {% else %}
-    <a class="navbar-brand" href="/registro/">Regístrate</a>
-    <a class="navbar-brand" href="/registro/login/">Inicia sesión</a>
+    <a class="navbar-brand" href="{% url 'register_url' %}">Regístrate</a>
+    <a class="navbar-brand" href="{% url 'login_url' %}">Inicia sesión</a>
     {% endif %}
 
     
@@ -232,6 +231,7 @@
   margin-top: 50px;">
   <p>AcmeCycling una empresa para los amantes del ciclismo</p>
   <p>Puede ponerse en contacto con nosotros a través del siguiente email: acmecycling.pgpi@gmail.com</p>
+  <a href="{% url 'Preguntas' %}"><p>PREGUNTAS FRECUENTES</p></a>
 </footer>
 
 </html>
