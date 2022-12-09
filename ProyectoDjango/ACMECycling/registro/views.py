@@ -3,14 +3,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-def indexView(request):
+def index_view(request):
     return render(request,'index.html')
 @login_required()
 
-def dashboardView(request):
+def dashboard_view(request):
     return render(request,'dashboard.html')
     
-def registerView(request):
+def register_view(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():

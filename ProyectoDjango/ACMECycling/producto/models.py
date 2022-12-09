@@ -14,10 +14,6 @@ class Departamento(models.Model):
     
 class Fabricante(models.Model):
     nombre = models.CharField(max_length=100)
-    #primerApellido = models.CharField(max_length=100)
-    #segundoApellido = models.CharField(max_length=100)
-    #pais = models.CharField(max_length=50)
-    #edad = models.IntegerField()
 
     def __str__(self):
         return self.nombre
