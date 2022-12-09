@@ -17,6 +17,9 @@
         <td>{{ form.password.label_tag }}</td>
         <td>{{ form.password }}</td>
     </div>
+    {% for field in form %}
+        {{ field.errors.as_ul }}
+    {% endfor %}
 
     <div>
         <button class="btn btn-dark">Inicia sesión</button>
