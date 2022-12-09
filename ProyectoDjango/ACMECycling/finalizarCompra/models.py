@@ -44,17 +44,6 @@ class Venta(models.Model):
     )
     precio=models.DecimalField(max_digits=6, decimal_places=2, null=True)
 
-    # class formasEstado(models.TextChoices):
-    #     TRANSITO = 'Transito', 
-    #     PENDIENTE = 'Pendiente'
-    #     ENVIADO = 'Enviado',
-    #     RECIBIDO ='Recibido'
-
-    # estado = models.CharField(
-    #     max_length=100,
-    #     choices=formasEstado.choices, default=formasEstado.PENDIENTE,
-    # )
-
     @staticmethod
     def getVentaPorId(ventaID):
         return Venta.objects.filter(id=ventaID)
@@ -68,13 +57,6 @@ class Venta(models.Model):
 
     def __str__(self):
         return 'Venta {}'.format(self.id)
-
-
-#===========================================================
-
-# class Seguimiento(models.Model):
-#         seguimiento_id = models.CharField(max_length=70)
-#         estado = models.ForeignKey(Venta, on_delete=models.CASCADE)
 
 class cantidadVenta(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
