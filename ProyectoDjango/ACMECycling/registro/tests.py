@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from django.contrib.auth.models import User
 
-class AdminTestCase(StaticLiveServerTestCase):
+class RegistroTestCase(StaticLiveServerTestCase):
 
     def setUp(self):
         self.base = TestCase()
