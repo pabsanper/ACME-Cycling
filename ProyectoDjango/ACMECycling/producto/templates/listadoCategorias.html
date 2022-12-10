@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="row">
+        <p style="text-align:center;">Aqui podrás encontrar un listado con todas las categorias de la tienda:</p>
+    </div>
+
+
+
+    <div class="row">
+            <div class="row">
+                <ul>
+                    {% for categoria in categorias%}
+                    <li class="fabricante">
+                        <a href='{{categoria.id}}' style="text-decoration:none; color: black; font-size:25px;">
+                            {{ categoria.nombre }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+
+
+
+{% endblock %}
