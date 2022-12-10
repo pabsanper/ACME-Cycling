@@ -28,6 +28,9 @@ urlpatterns = [
     path('fabricantes/', views_pr.listar_fabricantes, name="Fabricantes"),
     path('fabricantes/<int:id_fabricante>/', views_pr.listar_productos_fabricante),
 
+    path('categorias/', views_pr.listar_categorias, name="Categorias"),
+    path('categorias/<int:id_categoria>/', views_pr.listar_productos_categoria),
+
     path('catalogo/producto/<int:id_producto>',views_pr.detalles_productos, name='Detalles'),
     path('pagos/<int:venta_id>',views_fin.pago, name='Pago'),
     path('cargo/<int:venta_id>',views_fin.cargo, name='Cargo'),
