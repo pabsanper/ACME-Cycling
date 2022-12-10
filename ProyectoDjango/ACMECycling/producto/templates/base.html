@@ -198,19 +198,38 @@
       {% if productos %}
 
       <div class="slide-inner">
-
-        {% for pcs in productos %}
-
-        {% if pcs.stock > 0 %}
-
-        <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden="" checked="checked">
-        <div class="slide-item">
-          <img src="{{ pcs.imagen.url }}">
-        </div>
-        <label for="slide-3" class="slide-control prev control-1">‹</label>
-        <label for="slide-2" class="slide-control next control-1">›</label>
-        {% endif %}
-        {% endfor %}
+        <input class="slide-open" type="radio" id="slide-1" 
+        name="slide" aria-hidden="true" hidden="" checked="checked">
+  <div class="slide-item">
+      <img src="/media/productos/GinTonic_1Xj79rY.jpg">
+  </div>
+  <input class="slide-open" type="radio" id="slide-2" 
+        name="slide" aria-hidden="true" hidden="">
+  <div class="slide-item">
+      <img src="/media/productos/ruedas-montaña_uTq9lKl.jpg">
+  </div>
+  <input class="slide-open" type="radio" id="slide-3" 
+        name="slide" aria-hidden="true" hidden="">
+  <div class="slide-item">
+      <img src="/media/productos/rueda_carretera_pf4wXWF.jpeg">
+  </div>
+  <label for="slide-3" class="slide-control prev control-1">‹</label>
+  <label for="slide-2" class="slide-control next control-1">›</label>
+  <label for="slide-1" class="slide-control prev control-2">‹</label>
+  <label for="slide-3" class="slide-control next control-2">›</label>
+  <label for="slide-2" class="slide-control prev control-3">‹</label>
+  <label for="slide-1" class="slide-control next control-3">›</label>
+  <ol class="slide-indicador">
+      <li>
+          <label for="slide-1" class="slide-circulo">•</label>
+      </li>
+      <li>
+          <label for="slide-2" class="slide-circulo">•</label>
+      </li>
+      <li>
+          <label for="slide-3" class="slide-circulo">•</label>
+      </li>
+  </ol>
 
       </div>
 
