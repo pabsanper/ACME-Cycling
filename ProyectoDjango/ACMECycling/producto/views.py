@@ -46,3 +46,7 @@ def listar_productos_fabricante(request, id_fabricante):
     productos = Producto.objects.filter(fabricante__nombre__icontains = fabricante)
     return render(request, 'catalogo.html', {'productos': productos})
 
+def listar_productos_categoria(request, id_categoria):
+    categoria = get_object_or_404(Categoria, id=id_categoria)
+    productos = Producto.objects.filter(categoria__nombre__icontains = categoria)
+    return render(request, 'catalogo.html', {'productos': productos})
