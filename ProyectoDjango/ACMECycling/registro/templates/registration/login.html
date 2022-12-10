@@ -1,9 +1,29 @@
-{% extends 'index.html' %}
+{% extends "index.html" %}
+
+{% load static %}
+
 {% block content %}
-    <h1>inicio de sesión</h1>
-    <form method="POST">
-         {% csrf_token %}
-        {{form.as_p}}
-        <button>Inicia sesión</button>
-    </form>
+<h1 class="titulo">Inicio de sesión</h1>
+
+
+<form method="POST" class="log-form">
+    {% csrf_token %}
+
+    <div class="element">
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+    </div>
+    <div class="element">
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+    </div>
+    {% for field in form %}
+        {{ field.errors.as_ul }}
+    {% endfor %}
+
+    <div>
+        <button class="btn btn-dark">Inicia sesión</button>
+    </div>
+</form>
+
 {% endblock %}

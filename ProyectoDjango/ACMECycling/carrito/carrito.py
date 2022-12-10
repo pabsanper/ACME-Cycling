@@ -1,6 +1,5 @@
 from decimal import Decimal
 from django.conf import settings
-#from producto.models import Producto
 
 class Carrito(object):
 
@@ -25,7 +24,6 @@ class Carrito(object):
             }
         else:
             self.carrito[id]["cantidad"] += 1
-            #self.carrito[id]["acumulado"] += float(producto.precio)
         self.guardar_carrito()
     
     def guardar_carrito(self):
@@ -42,7 +40,6 @@ class Carrito(object):
         id = str(producto.id)
         if id in self.carrito.keys():
             self.carrito[id]["cantidad"] -= 1
-            #self.carrito[id]["acumulado"] -= float(producto.precio)
             if self.carrito[id]["cantidad"] <= 0 :
                 self.eliminar(producto)
             self.guardar_carrito()

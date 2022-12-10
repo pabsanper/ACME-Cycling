@@ -1,9 +1,44 @@
-{% extends 'index.html' %}
+{% extends "index.html" %}
+
+{% load static %}
+
 {% block content %}
-    <h1>Crea una nueva cuenta</h1>
-    <form method="POST">
-         {% csrf_token %}
-        {{form.as_p}}
-        <button>Regístrate</button>
-    </form>
+    <h1 class="titulo">Crea una nueva cuenta</h1>
+    
+    <form method="POST" class="log-form">
+        {% csrf_token %}
+
+            <div class="element">
+               
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </div>
+            <div class="element">
+                <td>{{ form.password1.label_tag }}</td>
+                <td>{{ form.password1 }}</td>
+            </div>
+            <div class="element">
+                <td>{{ form.password2.label_tag }}</td>
+                <td>{{ form.password2 }}</td>
+                {% for field in form %}
+                    {{ field.errors.as_ul }}
+                {% endfor %}
+            </div>
+                <div>
+                    
+                    <script type="text/javascript">
+                        function confirmar_terminos() {
+    
+                            alert("Al registrarte aceptas los siguientes términos de privacidad: \n- Sus datos se mantendrán durante el tiempo estrictamente necesario para el fin o los fines del tratamiento. \n- Se solicitarán solo los datos estrictamente necesarios para el fin de un uso correcto de la página web.\n- Tus datos serán tratados de tal manera que su seguridad, confidencialidad e integridad esté garantizada.\n");
+                    
+                            alert("Al registrarte aceptas los siguientes términos de uso: \n- Todas las compras y transacciones que se lleven a cabo por medio de este sitio web, están sujetas a un proceso de confirmación y verificación, el cual podría incluir la verificación del stock y disponibilidad de producto, validación de la forma de pago, validación de la factura (en caso de existir) y el cumplimiento de las condiciones requeridas por el medio de pago seleccionado \n- ACME-CYCLING  a través de su sitio web concede una licencia para que los usuarios utilicen  los productos que son vendidos en este sitio web de acuerdo a los Términos y Condiciones que se describen en este documento.\n- En caso de que aplique (para venta de software, templetes, u otro producto de diseño y programación) usted no puede colocar uno de nuestros productos, modificado o sin modificar, en un CD, sitio web o ningún otro medio y ofrecerlos para la redistribución o la reventa de ningún tipo.\n- Usted no puede declarar propiedad intelectual o exclusiva a ninguno de nuestros productos, modificado o sin modificar. Todos los productos son propiedad  de los proveedores del contenido. En caso de que no se especifique lo contrario, nuestros productos se proporcionan  sin ningún tipo de garantía, expresa o implícita.");
+                    
+                        }
+                        </script>
+                    <button class="btn btn-dark" onclick="return confirmar_terminos()">Confirmar
+                </div>
+            
+        </form>
+        
+
 {% endblock %}

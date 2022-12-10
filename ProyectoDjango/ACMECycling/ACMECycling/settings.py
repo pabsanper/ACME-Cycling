@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'carrito',
     'finalizarCompra',
     'fqs',
+    
 
 ]
 
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'ACMECycling.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,6 +93,7 @@ DATABASES = {
         'PASSWORD': 'acmecycling',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+        
     }
 }
 
@@ -134,6 +136,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'producto/static'),)
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

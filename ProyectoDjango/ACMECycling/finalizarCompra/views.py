@@ -15,9 +15,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.contrib import messages
 from django.template.loader import get_template
 
-#muestra los títulos de las recetas que están registradas
 def enviar_correo(mail, id, venta):
-    mensaje = 'Su pedido ha sido enviado, tiene el siguiente numero de seguimiento: '+id+ ' y ha costado' + str(venta.precio)+ ' €'
+    mensaje = 'Su pedido ha sido enviado, tiene el siguiente numero de seguimiento: '+id+ ' y ha costado ' + str(venta.precio)+ ' €'
     correo = mail
     context = {'mensaje': mensaje, 'mail': correo}
     plantilla = get_template('plantilla_mail.html')
@@ -68,8 +67,6 @@ def datos_pago_procesados(request):
             venta.save()
             return redirect('/pagos/'+str(venta.id))
             
-
-#muestra los títulos de las recetas que están registradas
 def pago(request, venta_id):
     venta = Venta.objects.get(id=venta_id)
     return render(request,'pago.html', {'venta': venta})
@@ -90,7 +87,7 @@ def cargo(request, venta_id):
 
         charge = stripe.Charge.create(
             customer=customer,
-            amount= precio, #stripe trabaja en centavos
+            amount= precio,
             currency='eur',
             description = 'Pago realizado'
         )
@@ -99,9 +96,17 @@ def cargo(request, venta_id):
         enviar_correo(email, str(venta.id), venta)
         return redirect('Confirmado', str(venta.id))
 
-        #Una vez se haya realizado la compra el carrito se quedaria vacio
-
 def pedido_confirmado(request, venta_id): 
     venta = Venta.objects.get(id=venta_id)  
     return render(request,'pedidos/confirmado.html', {'venta': venta}) 
+
+def seguimiento(request):
+    id = request.GET.get('searchbarPedido')
+    if id:
+        venta = Venta.getVentaPorId(id).get()
+        cantidadVenta = Venta.getCantidadVenta(venta.id)
+
+        return render(request, 'pedidos/seguimientos.html', {'venta': venta})
+    else:
+        return render(request, 'pedidos/seguimientos.html')
     

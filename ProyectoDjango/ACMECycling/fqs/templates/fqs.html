@@ -1,32 +1,30 @@
+{% extends 'base.html' %}
 
-
-{% block encabezado %}
-<h1> Preguntas frecuentes </h1>
+{% block title %}
+    Preguntas frecuentes
 {% endblock %}
 
-{% block contenido %}
-{% if fqs %} 
-{% for fq in fqs %} 
+{% block content %}
+{% for fq in fqs %}
 
-    <div class="row">
-        <div class="col-md-8">
-            <div class="row ">
-                <ul>
-                    <li>
-                        <p>P: {{ fq.pregunta }}</p>
-                        <p>R: {{ fq.respuesta }}</p>
-                    </li>
-                </ul>
-            </div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="row ">
+            <ul>
+                <li>
+                    <p><strong> {{ fq.pregunta }}</strong></p>
+                    <p>R: {{ fq.respuesta }}</p>
+                </li>
+            </ul>
         </div>
     </div>
+</div>
 
 {% endfor %}
-{% else %}
-    <p>Actualmente no contamos con preguntas frecuentes. Ponte en contacto con nosotros.</p>
-{% endif %} 
-
-    <p>Si no has encontrado respuesta a tu pregunta ponte en contacto con nosotros en la siguiente dirección de correo</p>
+<div class="contacto" style="border-style: dotted;">
+    <p>Si no has encontrado respuesta a tu pregunta ponte en contacto con nosotros en la siguiente dirección de correo
+    </p>
     <p>acme.cycling.pgpi@gmail.com</p>
     <p>Nos pondremos en contacto contigo lo antes posible para solventar tu duda.</p>
+</div>  
 {% endblock %}
