@@ -37,8 +37,17 @@ def listar_fabricantes(request):
     fabricantes = Fabricante.objects.all()
     return render(request, 'listadoFabricantes.html', {'fabricantes': fabricantes})
 
+def listar_categorias(request):
+    categorias = Categoria.objects.all()
+    return render(request, 'listadoCategorias.html', {'categorias': categorias})
+
 def listar_productos_fabricante(request, id_fabricante):
     fabricante = get_object_or_404(Fabricante, id=id_fabricante)
     productos = Producto.objects.filter(fabricante__nombre__icontains = fabricante)
+    return render(request, 'catalogo.html', {'productos': productos})
+
+def listar_productos_categoria(request, id_categoria):
+    categoria = get_object_or_404(Categoria, id=id_categoria)
+    productos = Producto.objects.filter(categoria__nombre__icontains = categoria)
     return render(request, 'catalogo.html', {'productos': productos})
 
