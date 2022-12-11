@@ -2,3 +2,4 @@ Django==3.0
 Pillow==9.3.0
 stripe==2.55.2
 selenium
+ 
