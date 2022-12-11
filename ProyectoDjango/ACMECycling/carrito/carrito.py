@@ -6,41 +6,41 @@ class Carrito(object):
     def __init__(self, request):
         self.request = request
         self.session = request.session
-        carrito = self.session.get("carrito")
-        if not carrito:
+        c = self.session.get("carrito")
+        if not c:
             self.session["carrito"] = {}
-            self.carrito = carrito
+            self.c = c
         else:
-            self.carrito= carrito
+            self.c= c
 
     def agregar(self, producto):
-        id = str(producto.id)
-        if id not in self.carrito.keys():
-            self.carrito[id] = {
+        id_carrito = str(producto.id)
+        if id_carrito not in self.c.keys():
+            self.c[id_carrito] = {
                 "producto_id" : producto.id,
                 "nombre" : producto.nombre,
                 "precio" : float(producto.precio),
                 "cantidad" : int(1),
             }
         else:
-            self.carrito[id]["cantidad"] += 1
+            self.c[id]["cantidad"] += 1
         self.guardar_carrito()
     
     def guardar_carrito(self):
-        self.session["carrito"]  = self.carrito
+        self.session["carrito"]  = self.c
         self.session.modified = True
 
     def eliminar(self, producto):
-        id = str(producto.id)
-        if id in self.carrito:
-            del self.carrito[id]
+        id_carrito = str(producto.id)
+        if id_carrito in self.c:
+            del self.c[id_carrito]
             self.guardar_carrito()
 
     def restar(self, producto):
-        id = str(producto.id)
-        if id in self.carrito.keys():
-            self.carrito[id]["cantidad"] -= 1
-            if self.carrito[id]["cantidad"] <= 0 :
+        id_carrito = str(producto.id)
+        if id_carrito in self.c.keys():
+            self.c[id_carrito]["cantidad"] -= 1
+            if self.c[id_carrito]["cantidad"] <= 0 :
                 self.eliminar(producto)
             self.guardar_carrito()
 
@@ -49,7 +49,7 @@ class Carrito(object):
         self.session.modified = True
 
     def get_total_price(self):
-        return sum(Decimal(item['precio']) * item['cantidad'] for item in self.carrito.values())
+        return sum(Decimal(item['precio']) * item['cantidad'] for item in self.c.values())
 
     def get_items(self):
-        return self.carrito.values()
+        return self.c.values()
