@@ -35,35 +35,34 @@ def datos_pago_procesados(request):
         nombre = request.POST["nombre"]
         email = request.POST["email"]
         direccion = request.POST["direccion"]
-        metodoPago = request.POST["metodoPago"]
-        metodoEnvio = request.POST["metodoEnvio"]
+        metodo_pago = request.POST["metodoPago"]
+        metodo_envio = request.POST["metodoEnvio"]
         cliente=request.user
-        if (metodoPago=="CR"):
+        if (metodo_pago=="CR"):
             carrito = Carrito(request)
             precio = carrito.get_total_price()
-            if (metodoEnvio=="CO"):
+            if (metodo_envio=="CO"):
                 suma=Decimal(2.00)
             else:
                 suma=Decimal(00.99)
             
             precio=precio+suma
             
-            venta = Venta(nombre=nombre,email=email,dir=direccion,metodoPago=metodoPago,precio=precio,cliente=cliente,metodoEnvio=metodoEnvio)
+            venta = Venta(nombre=nombre,email=email,dir=direccion,metodoPago=metodo_pago,precio=precio,cliente=cliente,metodoEnvio=metodo_envio)
             venta.save()
             enviar_correo(email, str(venta.id), venta)
             return redirect('Confirmado', str(venta.id))
-        if (metodoPago=="TJ"):
+        if (metodo_pago=="TJ"):
             carrito = Carrito(request)
             precio = carrito.get_total_price()
-            precio = carrito.get_total_price()
-            if (metodoEnvio=="CO"):
+            if (metodo_envio=="CO"):
                 suma=Decimal(2.00)
             else:
                 suma=Decimal(0.99)
             
             precio=precio+suma
             
-            venta = Venta(nombre=nombre,email=email,dir=direccion,metodoPago=metodoPago,precio=precio,cliente=cliente,metodoEnvio=metodoEnvio)
+            venta = Venta(nombre=nombre,email=email,dir=direccion,metodoPago=metodo_pago,precio=precio,cliente=cliente,metodoEnvio=metodo_envio)
             venta.save()
             return redirect('/pagos/'+str(venta.id))
             
@@ -82,15 +81,6 @@ def cargo(request, venta_id):
             source = request.POST['stripeToken']
         )
 
-        precio = int(venta.precio*100)
-   
-
-        charge = stripe.Charge.create(
-            customer=customer,
-            amount= precio,
-            currency='eur',
-            description = 'Pago realizado'
-        )
         venta.pagado=True
         venta.save()
         enviar_correo(email, str(venta.id), venta)
@@ -101,10 +91,9 @@ def pedido_confirmado(request, venta_id):
     return render(request,'pedidos/confirmado.html', {'venta': venta}) 
 
 def seguimiento(request):
-    id = request.GET.get('searchbarPedido')
-    if id:
-        venta = Venta.getVentaPorId(id).get()
-        cantidadVenta = Venta.getCantidadVenta(venta.id)
+    id_segui = request.GET.get('searchbarPedido')
+    if id_segui:
+        venta = Venta.getVentaPorId(id_segui).get()
 
         return render(request, 'pedidos/seguimientos.html', {'venta': venta})
     else:

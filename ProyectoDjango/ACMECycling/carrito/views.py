@@ -5,7 +5,6 @@ from producto.models import Producto
 from carrito.carrito import Carrito
 
 def carrito(request):
-    carrito = Carrito(request)
     return render(request, 'carrito.html')
 
 def agregar_producto(request, producto_id):
