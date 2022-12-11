@@ -26,31 +26,31 @@ class Venta(models.Model):
 
     pagado = models.BooleanField(default=False)
     estado = models.CharField(choices=CHOICES, max_length=1200, default=PENDIENTE)
-    class formasPago(models.TextChoices):
+    class formas_pago(models.TextChoices):
         CONTRAREEMBOLSO = 'CR', 
         TARJETA = 'TJ',
 
     metodoPago = models.CharField(
         max_length=2,
-        choices=formasPago.choices, default=formasPago.CONTRAREEMBOLSO,
+        choices=formas_pago.choices, default=formas_pago.CONTRAREEMBOLSO,
     )
-    class formasEnvio(models.TextChoices):
+    class formas_envio(models.TextChoices):
         CORREO = 'CO', 
         SEUR = 'SE',
 
     metodoEnvio = models.CharField(
         max_length=2,
-        choices=formasEnvio.choices, default=formasEnvio.CORREO,
+        choices=formas_envio.choices, default=formas_envio.CORREO,
     )
     precio=models.DecimalField(max_digits=6, decimal_places=2, null=True)
 
     @staticmethod
-    def getVentaPorId(ventaID):
-        return Venta.objects.filter(id=ventaID)
+    def getVentaPorId(id_venta):
+        return Venta.objects.filter(id=id_venta)
 
     @staticmethod
-    def getCantidadVenta(ventaID):
-        return cantidadVenta.objects.filter(venta=ventaID)
+    def getCantidadVenta(id_venta):
+        return cantidad_venta.objects.filter(venta=id_venta)
 
     class Meta:
         ordering = ('-creacion',)
@@ -58,7 +58,7 @@ class Venta(models.Model):
     def __str__(self):
         return 'Venta {}'.format(self.id)
 
-class cantidadVenta(models.Model):
+class cantidad_venta(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.IntegerField()
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE)

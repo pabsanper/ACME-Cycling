@@ -141,7 +141,7 @@
 
     <div class="navbar-header">
       <a class="navbar-brand" href="/">
-        <img class="logo" src="/media/Acme_cycling.png">
+        <img class="logo" alt="Logo" src="/media/Acme_cycling.png">
       </a>
     </div>
 
@@ -163,8 +163,8 @@
     
 
     <ul class="nav">
-      <li class="nav-item"><a href="{% url 'Carrito' %}" style="color: white"><i
-            class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+      <li class="nav-item"><a href="{% url 'Carrito' %}" style="color: white">
+        <em class="fa-sharp fa-solid fa-cart-shopping"></em></a>
         <ul class="desplegable">
           {% if request.session.carrito.items %}
           {% for key, value in request.session.carrito.items %}
