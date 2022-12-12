@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'acmecycling',
         'USER': 'acmecycling',
         'PASSWORD': 'acmecycling',
-        'HOST': '127.0.0.1',
+        'HOST': '127.0.0.1', #postgres
         'PORT': '5432',
         
     }

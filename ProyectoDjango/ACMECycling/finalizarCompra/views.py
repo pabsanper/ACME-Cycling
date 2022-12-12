@@ -75,7 +75,7 @@ def cargo(request, venta_id):
     if request.method == 'POST':
         nombre = venta.nombre
         email = venta.email
-        customer = stripe.Customer.create(
+        stripe.Customer.create(
             email=email,
             name=nombre,
             source = request.POST['stripeToken']
