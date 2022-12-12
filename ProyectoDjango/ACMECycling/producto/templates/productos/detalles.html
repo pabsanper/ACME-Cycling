@@ -2,35 +2,36 @@
 {% load static %}
 
 {% block title %}
-  {{ producto.nombre }}
+{{ producto.nombre }}
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    {% if producto.stock == 0 %}
-      <h2>PRODUCTO AGOTADO</h2>
-    {% endif %}
-    <div class="col-md-5">
-      <img class="img-responsive" alt="Foto" id="image-detail" width="400" height="400"  src="{{ producto.imagen.url }}" />
-    </div>
-    <div class="col-md-7">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h2>{{ producto.nombre }}</h2>
-          
-          <p style="font-size:15px">
-            Categoría:  
-              {{ producto.categoria }}
-          </p>
-          <p style="font-size:20px">
-            {{ producto.descripcion}}
-          </p>
-          <p style="font-size:20px">{{ producto.precio }}€</p>
-          
+<div class="row">
+  {% if producto.stock == 0 %}
+  <h2>PRODUCTO AGOTADO</h2>
+  {% endif %}
+  <div class="col-md-5">
+    <img class="img-responsive" alt="Foto" id="image-detail" width="400" height="400" src="{{ producto.imagen.url }}" />
+  </div>
+  <div class="col-md-7">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2>{{ producto.nombre }}</h2>
+
+        <p style="font-size:15px">
+          Categoría:
+          {{ producto.categoria }}
+        </p>
+        <p style="font-size:20px">
+          {{ producto.descripcion}}
+        </p>
+        <p style="font-size:20px">{{ producto.precio }}€</p>
+        {% if producto.stock > 0 and user.is_authenticated %}
           <a href="{% url 'Add' producto.id %}" class="btn btn-outline-dark">Agregar al carrito</a>
-        </div>
+        {% endif %}
       </div>
     </div>
-
   </div>
+
+</div>
 {% endblock %}

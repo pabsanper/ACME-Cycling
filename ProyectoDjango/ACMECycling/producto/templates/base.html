@@ -157,14 +157,14 @@
     <a class="navbar-brand" href="{% url 'Categorias' %}">Categorias</a>
     <a class="navbar-brand" href="{% url 'seguimiento' %}">Seguimiento</a>
 
-    
+
 
     {% if user.is_authenticated %}
-    
+
 
     <ul class="nav">
       <li class="nav-item"><a href="{% url 'Carrito' %}" style="color: white">
-        <em class="fa-sharp fa-solid fa-cart-shopping"></em></a>
+          <em class="fa-sharp fa-solid fa-cart-shopping"></em></a>
         <ul class="desplegable">
           {% if request.session.carrito.items %}
           {% for key, value in request.session.carrito.items %}
@@ -178,16 +178,16 @@
       </li>
     </ul>
 
-    
+
 
     <a class="navbar-brand" href="{% url 'logout' %}">Cierra sesión</a>
-  
+
     {% else %}
     <a class="navbar-brand" href="{% url 'register_url' %}">Regístrate</a>
     <a class="navbar-brand" href="{% url 'login_url' %}">Inicia sesión</a>
     {% endif %}
 
-    
+
 
     {% endblock %}
   </nav>
@@ -200,38 +200,35 @@
       {% if productos %}
 
       <div class="slide-inner">
-        <input class="slide-open" type="radio" id="slide-1" 
-        name="slide" aria-hidden="true" hidden="" checked="checked">
-  <div class="slide-item">
-      <img alt="" src="/media/productos/GinTonic_1Xj79rY.jpg">
-  </div>
-  <input class="slide-open" type="radio" id="slide-2" 
-        name="slide" aria-hidden="true" hidden="">
-  <div class="slide-item">
-      <img alt="" src="/media/productos/ruedas-montaña_uTq9lKl.jpg">
-  </div>
-  <input class="slide-open" type="radio" id="slide-3" 
-        name="slide" aria-hidden="true" hidden="">
-  <div class="slide-item">
-      <img alt="" src="/media/productos/rueda_carretera_pf4wXWF.jpeg">
-  </div>
-  <label for="slide-3" class="slide-control prev control-1">‹</label>
-  <label for="slide-2" class="slide-control next control-1">›</label>
-  <label for="slide-1" class="slide-control prev control-2">‹</label>
-  <label for="slide-3" class="slide-control next control-2">›</label>
-  <label for="slide-2" class="slide-control prev control-3">‹</label>
-  <label for="slide-1" class="slide-control next control-3">›</label>
-  <ol class="slide-indicador">
-      <li>
-          <label for="slide-1" class="slide-circulo">•</label>
-      </li>
-      <li>
-          <label for="slide-2" class="slide-circulo">•</label>
-      </li>
-      <li>
-          <label for="slide-3" class="slide-circulo">•</label>
-      </li>
-  </ol>
+        <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden="" checked="checked">
+        <div class="slide-item">
+          <img alt="" src="/media/productos/GinTonic_1Xj79rY.jpg">
+        </div>
+        <input class="slide-open" type="radio" id="slide-2" name="slide" aria-hidden="true" hidden="">
+        <div class="slide-item">
+          <img alt="" src="/media/productos/ruedas-montaña_uTq9lKl.jpg">
+        </div>
+        <input class="slide-open" type="radio" id="slide-3" name="slide" aria-hidden="true" hidden="">
+        <div class="slide-item">
+          <img alt="" src="/media/productos/rueda_carretera_pf4wXWF.jpeg">
+        </div>
+        <label for="slide-3" class="slide-control prev control-1">‹</label>
+        <label for="slide-2" class="slide-control next control-1">›</label>
+        <label for="slide-1" class="slide-control prev control-2">‹</label>
+        <label for="slide-3" class="slide-control next control-2">›</label>
+        <label for="slide-2" class="slide-control prev control-3">‹</label>
+        <label for="slide-1" class="slide-control next control-3">›</label>
+        <ol class="slide-indicador">
+          <li>
+            <label for="slide-1" class="slide-circulo">•</label>
+          </li>
+          <li>
+            <label for="slide-2" class="slide-circulo">•</label>
+          </li>
+          <li>
+            <label for="slide-3" class="slide-circulo">•</label>
+          </li>
+        </ol>
 
       </div>
 
@@ -246,12 +243,15 @@
   padding: 3px;
   background-color: DarkSalmon;
   color: white;
+  position: relative;
   bottom: 0;
   width: 100%;
   margin-top: 50px;">
   <p>AcmeCycling una empresa para los amantes del ciclismo</p>
-  <p>Puede ponerse en contacto con nosotros a través del siguiente email: acmecycling.pgpi@gmail.com</p>
-  <a href="{% url 'Preguntas' %}"><p>PREGUNTAS FRECUENTES</p></a>
+  <p>Puede ponerse en contacto con nosotros a través del siguiente email: acme.cycling.pgpi@gmail.com</p>
+  <a href="{% url 'Preguntas' %}">
+    <p>PREGUNTAS FRECUENTES</p>
+  </a>
 </footer>
 
 </html>
