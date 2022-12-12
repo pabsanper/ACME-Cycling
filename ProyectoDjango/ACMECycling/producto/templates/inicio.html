@@ -1,14 +1,26 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block encabezado %}
-<h1> Recetario </h1>
+{% load static %}
+
+{% block content %}
+
+	
+<h3><img width="400" height="400"
+	src="media/Acme_cycling.png"
+	/>El mundo soñado por y para los amantes del ciclismo</h3>
+
+
+{% if productos %}
+<div class="slider-container">  
+	
+	{% for p in productos %}
+		<img
+		class="slider-item"
+		src="{{p.imagen.url}}"
+		/>
+	{% endfor %}
+  </div>  
+{% endif %}
+
+
 {% endblock %}
-
-  {% block contenido %}
-    <p>Actualmente tenemos registradas {{productos|length}} productos: </p>
-	<ol>
-		{% for dato in productos %}
-	  	<li>{{dato.nombre}}</li>
-		{% endfor %}
-	</ol>
-  {% endblock %}

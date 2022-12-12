@@ -2,21 +2,26 @@
 
 {% block content %}
 <div class="container">
-   <div class="border rounded p-4 m-4">
+    <div class="border rounded p-4 m-4">
         <p class="display-4 pl-4 ml-4">Consulta tu pedido</p>
-        <hr>
-        <nav class="barraPedido one-edge-shadow navbar navbar-light sticky-top navbar navbar-expand-lg text-black" style="background-color: transparent; 	width: 50%;">
-        <form class="collapse navbar-collapse" id="navbarSupportedContent" method="GET">
-      		<ul class="navbar-nav mr-auto">
-				<li id="search-bar" class="col-lg-12">
-        		  <input type="search" name="searchbarPedido" class="form-control" placeholder="Buscar pedido por id"/>
-				</li>
-				<li id="search-button">
-		  			<input class="btn btn-primary" type="submit" value="Buscar Pedido"></input>
-				</li>
-     		</ul>
-     	</form>
-     	  </nav>
+
+        
+
+        <div class="row" style="padding-bottom: 2%; padding-top: 2%">
+            <div class="col"></div>
+            <div class="col-md-4">
+                <form method="get" action="{% url 'seguimiento' %}">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="form-control" placeholder="Buscar pedido por id" name="searchbarPedido"
+                                value="{{ request.GET.buscar }}">
+                            <button type="submit" class="btn btn-outline-dark">Buscar pedido</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
 
 
         <table class="table">
@@ -32,18 +37,18 @@
             <tbody>
                 {% if venta.precio %}
                 <tr>
-						<td>{{venta.id}}</td>
-                        <td>{{venta.estado}}</td>
-	                    <td>{{venta.creacion}}</td>
-	                    <td>{{venta.precio}} €</td>
+                    <td>{{venta.id}}</td>
+                    <td>{{venta.estado}}</td>
+                    <td>{{venta.creacion}}</td>
+                    <td>{{venta.precio}} €</td>
                 </tr>
                 {% endif %}
-                           
+
             </tbody>
 
         </table>
 
-   </div>
+    </div>
 </div>
 
 
