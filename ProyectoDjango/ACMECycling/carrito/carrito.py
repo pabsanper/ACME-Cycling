@@ -23,7 +23,7 @@ class Carrito(object):
                 "cantidad" : int(1),
             }
         else:
-            self.c[id]["cantidad"] += 1
+            self.c[id_carrito]["cantidad"] += 1
         self.guardar_carrito()
     
     def guardar_carrito(self):
