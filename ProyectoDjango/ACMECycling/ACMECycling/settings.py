@@ -29,7 +29,7 @@ SECRET_KEY = '14*sp)pn)5ntw912-r!4r%kgg&k^pgw!d=87nwv$_1$o6dw!v1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'carrito',
     'finalizarCompra',
     'fqs',
-    
+
 
 ]
 
@@ -87,13 +87,8 @@ WSGI_APPLICATION = 'ACMECycling.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'acmecycling',
-        'USER': 'acmecycling',
-        'PASSWORD': 'acmecycling',
-        'HOST': '127.0.0.1', #postgres
-        'PORT': '5432',
-        
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -134,9 +129,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'producto/static'),)
+STATICFILES_DIRS = [
+    "/home/pabsanper/ACME-Cycling/ProyectoDjango/ACMECycling/producto/static",
+    "/home/pabsanper/PGPI/lib/python3.10/site-packages/django/contrib/admin/static/admin"]
 
+STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -150,4 +147,3 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'acme.cycling.pgpi@gmail.com'
 EMAIL_HOST_PASSWORD = 'ypqgyzvkiffshnwz'
 EMAIL_PORT = 587
-
