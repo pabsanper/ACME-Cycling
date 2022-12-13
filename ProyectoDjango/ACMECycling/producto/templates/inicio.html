@@ -5,7 +5,7 @@
 {% block content %}
 
 	
-<h3><img width="400" height="400"
+<h3><img width="400" height="400" alt="Foto"
 	src="media/Acme_cycling.png"
 	/>El mundo soñado por y para los amantes del ciclismo</h3>
 
@@ -14,7 +14,7 @@
 <div class="slider-container">  
 	
 	{% for p in productos %}
-		<img
+		<img alt="Foto"
 		class="slider-item"
 		src="{{p.imagen.url}}"
 		/>
