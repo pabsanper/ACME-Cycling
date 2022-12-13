@@ -39,8 +39,14 @@
             <div class="row">
                 <h2>{{ producto.precio }}€</h2>
             </div>
+            
             <div class="row" id="boton">
-                <a href="{% url 'Add' producto.id %}" class="btn btn-outline-dark">Agregar al carrito</a>
+                {% if producto.stock == 0 %}
+                  <h5>PRODUCTO AGOTADO</h5>
+                {% endif %}
+                {% if producto.stock > 0 and user.is_authenticated %}                
+                  <a href="{% url 'Add' producto.id %}" class="btn btn-outline-dark">Agregar al carrito</a>
+                {% endif %}
             </div>
         </div>
         <div class="col"></div>
