@@ -8,9 +8,6 @@ Finalización de compra
   <h1>Finalización de compra</h1>
 
   <div class="row">
-    <script>
-      alert("Sobre la política de envío gratuito: \n-AcmeCycling no dispone de costes de envíos gratuitos debidos a que no disponemos de servicio de transporte y dependemos de servicios de terceros.");
-  </script>
     <div class="row">
       <div class="alert alert-primary" role="alert">
         <table class="table table-bordered">
@@ -101,9 +98,17 @@ Finalización de compra
           </div>
         
         </div>
+        <script type="text/javascript">
+          function confirmar_terminos() {
 
+              alert("Sobre la política de envío gratuito: \n-AcmeCycling no dispone de costes de envíos gratuitos debidos a que no disponemos de servicio de transporte y dependemos de servicios de terceros.");
+  
+              alert("Sobre la política de devoluciones: \nNo se permiten devoluciones bajo ningún concepto, excepto que sea por:\n -Porque el producto está estropeado.\n -Medidas o tallas incorrectas.\n -Artículo incorrecto \nBajo ningún concepto se permite la devolución por desistimiento de una compra online.");
       
-        <button type="submit" class="btn btn-success">Confirmar pedido</button>
+          }
+          </script>
+      
+        <button type="submit" onclick="return confirmar_terminos()" class="btn btn-success">Confirmar pedido</button>
       </form>
     </div>
 
